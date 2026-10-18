@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>glasslatch — EU-sovereign cloud security</title>
+  <meta name="description" content="glasslatch finds misconfigurations, vulnerabilities, runtime threats and compliance gaps across European and global clouds, and ranks them by what an attacker could actually reach. Built and run in the EU by a Swedish company. Private beta.">
+  <meta name="theme-color" content="#050608">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:title" content="glasslatch — EU-sovereign cloud security">
+  <meta property="og:description" content="See every risk in your cloud. EU sovereign, wherever it runs. glasslatch is in private beta.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    document.documentElement.classList.add('js');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('reduced');
+  </script>
+</head>
+<body>
+  <!-- Fixed photographic stage. Transparent sections reveal it; opaque sections slide over it. -->
+  <div class="stage" aria-hidden="true">
+    <picture class="stage__poster">
+      <source media="(max-width: 819px)" srcset="assets/fallback-390.webp">
+      <img src="assets/fallback-1440.webp" alt="" width="1440" height="900" loading="lazy" decoding="async">
+    </picture>
+    <canvas id="gl-canvas" class="stage__canvas"></canvas>
+  </div>
+
+  <header class="nav" id="nav">
+    <div class="nav__inner wrap">
+      <a class="brand" href="#top" aria-label="glasslatch, back to top">
+        <img class="brand__mark" src="assets/mark-28.webp" srcset="assets/mark-28.webp 1x, assets/mark-56.webp 2x, assets/mark-84.webp 3x" width="28" height="28" alt="" aria-hidden="true" decoding="async">
+        <span class="brand__word">glasslatch</span>
+      </a>
+      <nav class="nav__links" aria-label="Sections">
+        <a href="#reach">Attack paths</a>
+        <a href="#coverage">Coverage</a>
+        <a href="#sovereignty">Sovereignty</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
+      <div class="nav__actions">
+        <a class="btn btn--small btn--light" href="#queue" data-queue><span class="nav__cta-long">Join the beta queue</span><span class="nav__cta-short">Join the queue</span></a>
+        <button class="nav__menu" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="menu" id="menu">
+    <nav class="menu__links" aria-label="Sections">
+      <a href="#why">Why now</a>
+      <a href="#reach">Attack paths</a>
+      <a href="#coverage">Coverage</a>
+      <a href="#sovereignty">Sovereignty</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#questions">Questions</a>
+    </nav>
+    <a class="btn btn--light btn--large" href="#queue" data-queue>Join the beta queue <span class="btn__arrow" aria-hidden="true">→</span></a>
+    <p class="menu__foot mono">Built and run in the EU <span aria-hidden="true">·</span> Sweden</p>
+  </div>
+
+  <main id="top">
+    <!-- Hero: the tension, what glasslatch is, the one action -->
+    <section class="hero" data-shot="hero" aria-labelledby="hero-title">
+      <div class="hero__inner wrap">
+        <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span><span class="eyebrow__extra">EU-sovereign cloud security <span class="eyebrow__sep" aria-hidden="true">/</span></span><a class="eyebrow__beta" href="#queue">Private beta</a></p>
+        <h1 class="hero__title" id="hero-title">
+          <span class="hero__line">Every cloud has a hidden way in.</span>
+          <span class="hero__line hero__line--2">See it. Close it.</span>
+        </h1>
+        <p class="hero__sub">glasslatch finds the misconfigurations, vulnerabilities, runtime threats and compliance gaps across your European and global clouds, and ranks them by what an attacker could actually reach. Built and run in the EU by a Swedish company.</p>
+        <div class="hero__ctas">
+          <a class="btn btn--light" href="#queue" data-queue>Join the beta queue <span class="btn__arrow" aria-hidden="true">→</span></a>
+        </div>
+        <ul class="trust" aria-label="At a glance">
+          <li>Read-only by default</li>
+          <li>Hosted in the EU, or self-hosted</li>
+        </ul>
+      </div>
+      <a class="hero__cue" href="#clouds" aria-label="Scroll to the next section"><span></span></a>
+    </section>
+
+    <!-- Clouds: European first, as text -->
+    <section class="clouds" id="clouds" aria-labelledby="clouds-title">
+      <div class="wrap">
+        <h2 class="label" id="clouds-title">European clouds first</h2>
+        <div class="clouds__groups">
+          <div class="cloud-group cloud-group--eu">
+            <h3 class="cloud-group__k">European clouds</h3>
+            <ul>
+              <li>OVHcloud</li><li>Scaleway</li><li>Hetzner Cloud</li><li>IONOS</li><li>STACKIT</li><li>Open Telekom Cloud</li>
+            </ul>
+          </div>
+          <div class="cloud-group">
+            <h3 class="cloud-group__k">Global clouds</h3>
+            <ul>
+              <li>AWS</li><li>Microsoft Azure</li><li>Google Cloud</li>
+            </ul>
+          </div>
+          <div class="cloud-group">
+            <h3 class="cloud-group__k">Platforms</h3>
+            <ul>
+              <li>Kubernetes</li><li>Linux hosts</li><li>Private OpenStack</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why now -->
+    <section class="why" id="why" aria-labelledby="why-title">
+      <div class="wrap">
+        <p class="label">Why now</p>
+        <h2 class="why__lead" id="why-title">Seeing your cloud clearly is now a duty. <em>Where that picture lives is a choice.</em></h2>
+        <div class="notes notes--two">
+          <article class="note">
+            <p class="note__k">Accountability</p>
+            <h3>Cloud risk is a management duty.</h3>
+            <p>Under NIS2, managing cloud risk sits with leadership. It starts with seeing what an attacker would see.</p>
+          </article>
+          <article class="note">
+            <p class="note__k">Jurisdiction</p>
+            <h3>The map belongs in Europe.</h3>
+            <p>A map of every weakness in your cloud is the most sensitive document you own. It should not sit with a provider outside Europe.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- What makes it different: reach -->
+    <section class="reach" id="reach" aria-labelledby="reach-title">
+      <div class="wrap reach__grid">
+        <header class="section-head">
+          <p class="label">Attack paths</p>
+          <h2 id="reach-title">Fix the risks attackers can reach.</h2>
+          <p class="section-head__sub">glasslatch maps the routes an attacker would take, from the internet to your data. Every asset, identity, network path and finding is linked in one security graph.</p>
+        </header>
+
+        <figure class="paths">
+          <svg class="paths__svg" viewBox="0 0 560 300" aria-hidden="true">
+            <defs>
+              <linearGradient id="path-amber" x1="0" x2="1">
+                <stop offset="0" stop-color="#ff9a4d" stop-opacity="0.2"/>
+                <stop offset="1" stop-color="#ff9a4d"/>
+              </linearGradient>
+              <radialGradient id="node-glass" cx="0.35" cy="0.3" r="0.8">
+                <stop offset="0" stop-color="#1b2a33"/>
+                <stop offset="1" stop-color="#0b1116"/>
+              </radialGradient>
+            </defs>
+            <g class="paths__grid" stroke="rgba(214,228,240,0.06)">
+              <path d="M0 50H560M0 100H560M0 150H560M0 200H560M0 250H560"/>
+              <path d="M70 0V300M140 0V300M210 0V300M280 0V300M350 0V300M420 0V300M490 0V300"/>
+            </g>
+            <!-- quiet edges of the graph -->
+            <g class="paths__edges" stroke="rgba(170,215,230,0.22)" fill="none" stroke-width="1.2">
+              <path d="M176 162 C 214 212, 252 226, 290 226"/>
+              <path d="M318 226 C 356 230, 386 236, 408 236"/>
+              <path d="M291 232 C 252 256, 204 258, 170 252"/>
+              <path d="M431 230 C 466 214, 488 186, 502 166"/>
+              <path d="M290 84 C 262 120, 290 180, 300 212"/>
+            </g>
+            <!-- the reachable route -->
+            <path class="paths__route" d="M61 150 C 100 150, 120 150, 160 150 C 220 150, 250 78, 304 78 C 360 78, 380 150, 420 150 C 460 150, 480 150, 495 150" fill="none" stroke="url(#path-amber)" stroke-width="2.2" stroke-linecap="round"/>
+            <path class="paths__pulse" pathLength="100" d="M61 150 C 100 150, 120 150, 160 150 C 220 150, 250 78, 304 78 C 360 78, 380 150, 420 150 C 460 150, 480 150, 495 150" fill="none" stroke="#ffd2a8" stroke-width="2.6" stroke-linecap="round"/>
+            <g class="paths__nodes">
+              <g transform="translate(44 150)"><circle r="17" fill="url(#node-glass)" stroke="rgba(214,228,240,0.35)"/><path d="M-7 0H7M0 -7C4 -3 4 3 0 7M0 -7C-4 -3 -4 3 0 7" stroke="#cfe9f0" fill="none" stroke-width="1.3"/></g>
+              <g transform="translate(164 150)"><circle r="19" fill="url(#node-glass)" stroke="#ff9a4d"/><rect x="-7" y="-6" width="14" height="12" rx="2" stroke="#ffd2a8" fill="none" stroke-width="1.3"/></g>
+              <g transform="translate(304 78)"><circle r="19" fill="url(#node-glass)" stroke="#ff9a4d"/><circle cy="-3" r="3.5" stroke="#ffd2a8" fill="none" stroke-width="1.3"/><path d="M-6 7C-5 2 5 2 6 7" stroke="#ffd2a8" fill="none" stroke-width="1.3"/></g>
+              <g transform="translate(304 226)"><circle r="14" fill="url(#node-glass)" stroke="rgba(214,228,240,0.3)"/></g>
+              <g transform="translate(160 250)"><circle r="10" fill="url(#node-glass)" stroke="rgba(214,228,240,0.25)"/></g>
+              <g transform="translate(420 236)"><circle r="12" fill="url(#node-glass)" stroke="rgba(214,228,240,0.3)"/></g>
+              <g transform="translate(516 150)"><circle r="21" fill="url(#node-glass)" stroke="#ff9a4d"/><ellipse cy="-5" rx="7" ry="2.6" stroke="#ffd2a8" fill="none" stroke-width="1.3"/><path d="M-7 -5V5C-7 7 7 7 7 5V-5" stroke="#ffd2a8" fill="none" stroke-width="1.3"/></g>
+            </g>
+            <g class="paths__labels" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10.5" letter-spacing="0.08em">
+              <text x="44" y="190" text-anchor="middle" fill="#8f9aa6">INTERNET</text>
+              <text x="164" y="192" text-anchor="middle" fill="#e9eef3">PUBLIC VM</text>
+              <text x="164" y="206" text-anchor="middle" fill="#ff9a4d">CRITICAL CVE</text>
+              <text x="304" y="40" text-anchor="middle" fill="#e9eef3">OVER-PRIVILEGED ROLE</text>
+              <text x="516" y="194" text-anchor="middle" fill="#e9eef3">CUSTOMER</text>
+              <text x="516" y="208" text-anchor="middle" fill="#e9eef3">DATABASE</text>
+            </g>
+          </svg>
+          <ol class="route" aria-hidden="true">
+            <li><span class="route__node"></span><span>Internet</span></li>
+            <li class="is-hot"><span class="route__node"></span><span>Public VM <em>critical CVE</em></span></li>
+            <li class="is-hot"><span class="route__node"></span><span>Over-privileged role</span></li>
+            <li class="is-hot"><span class="route__node"></span><span>Customer database</span></li>
+          </ol>
+          <figcaption class="paths__cap">
+            <p class="sr-only">Example attack path: the internet, then a public VM with a critical vulnerability, then an over-privileged role, then a customer database. The database’s exposure score is 92 out of 100.</p>
+            <div class="score" aria-hidden="true">
+              <div class="score__dial" style="--v:92">
+                <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="score__track"/><circle cx="60" cy="60" r="52" class="score__fill" pathLength="100"/></svg>
+                <span class="score__num">92</span>
+              </div>
+              <div class="score__meta">
+                <p class="mono">Exposure <span>/ 100</span></p>
+                <p class="score__what">Customer database</p>
+                <p class="tag">Example route</p>
+              </div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <div class="reach__notes">
+          <article class="note">
+            <p class="note__k">One graph</p>
+            <h3>Every route, in one picture.</h3>
+            <p>Assets, identities, network paths and findings, linked. Attack paths show the way from the internet to your data.</p>
+          </article>
+          <article class="note">
+            <p class="note__k">One score</p>
+            <h3>A single 0–100 exposure score.</h3>
+            <p>Each asset gets one, set by the cheapest route an attacker on the internet could take to it.</p>
+          </article>
+          <article class="note">
+            <p class="note__k">One list</p>
+            <h3>Fixes, in the order that matters.</h3>
+            <p>Ranked by how much exposure each one removes. One ordered list, instead of a wall of alerts.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- What it covers -->
+    <section class="coverage" id="coverage" aria-labelledby="coverage-title">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="label">Coverage</p>
+          <h2 id="coverage-title">See every risk in your cloud.</h2>
+          <p class="section-head__sub">Misconfigurations, vulnerabilities, runtime threats and compliance gaps. One platform, across European and global clouds.</p>
+        </header>
+
+        <div class="bento">
+          <article class="tile tile--posture">
+            <div class="tile__copy">
+              <p class="tile__k">Posture</p>
+              <h3>Continuous, read-only checks.</h3>
+              <p>Cloud and Kubernetes configuration, checked across identity, network exposure, storage, encryption, logging and data residency. Every finding comes with exact remediation steps.</p>
+            </div>
+            <ul class="checks" aria-label="Example findings">
+              <li><span class="sev sev--crit">Critical</span><span>Storage bucket readable by anyone</span></li>
+              <li><span class="sev sev--high">High</span><span>SSH open to the whole internet</span></li>
+              <li><span class="sev sev--med">Medium</span><span>Instance running outside the EU/EEA</span></li>
+              <li><span class="sev sev--low">Low</span><span>Audit logging switched off</span></li>
+            </ul>
+            <p class="tag">Example findings</p>
+          </article>
+
+          <article class="tile tile--vuln">
+            <div class="tile__copy">
+              <p class="tile__k">Vulnerabilities</p>
+              <h3>Every workload, covered.</h3>
+              <p>VM disks are scanned agentlessly, inside your own region. Hosts, container images and Kubernetes nodes sit in the same view. Exposed secrets are found without their values being copied.</p>
+            </div>
+            <div class="signal">
+              <p class="signal__q">Shown on every vulnerability</p>
+              <ul class="chips" aria-label="Each vulnerability shows">
+                <li class="chip chip--hot">Known to be exploited</li>
+                <li class="chip">Likely to be exploited</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="tile tile--runtime">
+            <div class="tile__copy">
+              <p class="tile__k">Runtime</p>
+              <h3>Threats, caught live.</h3>
+              <p>Live threat detection on hosts and clusters, mapped to MITRE ATT&amp;CK, with prevention.</p>
+            </div>
+            <ul class="chips" aria-label="Runtime">
+              <li class="chip">Detect</li>
+              <li class="chip chip--ice">Prevent</li>
+            </ul>
+          </article>
+
+          <article class="tile tile--comp">
+            <div class="tile__copy">
+              <p class="tile__k">Compliance</p>
+              <h3>No evidence is not a pass.</h3>
+              <p>Control-by-control status, mapped to NIS2, DORA, ISO 27001, GDPR, SecNumCloud and more. Unscanned means not assessed, never a false green. Reports are audit-ready.</p>
+            </div>
+            <ul class="states" aria-label="Control states">
+              <li><span class="states__sw states__sw--ok"></span>Satisfied</li>
+              <li><span class="states__sw states__sw--no"></span>Not satisfied</li>
+              <li><span class="states__sw states__sw--na"></span>Not assessed</li>
+            </ul>
+          </article>
+
+          <article class="tile tile--code">
+            <div class="tile__copy">
+              <p class="tile__k">Code to cloud</p>
+              <h3>Caught before it ships.</h3>
+              <p>Infrastructure-as-code is checked before it ships, and cloud risks trace back to the code that created them.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sovereignty (photographic macro shot) -->
+    <section class="sovereign" id="sovereignty" data-shot="seal" aria-labelledby="sov-title">
+      <div class="sovereign__spacer" aria-hidden="true"></div>
+      <div class="wrap sovereign__inner">
+        <div class="sovereign__panel">
+          <p class="label">Sovereignty</p>
+          <h2 id="sov-title">EU sovereign,<br> wherever it runs.</h2>
+          <p class="sovereign__intro">Three ways to run glasslatch. In every one, your security data stays under European control, or under yours.</p>
+          <ul class="modes">
+            <li>
+              <p class="modes__k">Hosted</p>
+              <h3>glasslatch cloud, fully European.</h3>
+              <p>Hosted, operated and governed entirely in the EU, on OVHcloud, by a Swedish company. Your security data stays under EU jurisdiction, end to end.</p>
+            </li>
+            <li>
+              <p class="modes__k">Self-hosted</p>
+              <h3>Your data centre, or your sovereign cloud.</h3>
+              <p>Air-gapped included. Your security data never leaves your control.</p>
+            </li>
+            <li>
+              <p class="modes__k">Bring your own AI</p>
+              <h3>Your assistant, your permissions.</h3>
+              <p>Connect your own AI assistant, including an EU-hosted model, through the built-in MCP server. It sees only what your permissions allow. glasslatch contains no AI model of its own, and no AI vendor of ours ever sees your data.</p>
+            </li>
+          </ul>
+          <div class="sovereign__all">
+            <p class="modes__k">In every mode</p>
+            <p>Data-residency checks flag any resource outside the EU/EEA.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Control -->
+    <section class="control" id="control" aria-labelledby="control-title">
+      <div class="wrap split">
+        <header class="section-head split__head">
+          <p class="label">Control</p>
+          <h2 id="control-title">Read-only by default.</h2>
+          <p class="section-head__sub">glasslatch reads. It never writes unless you allow it.</p>
+        </header>
+        <div>
+          <ol class="steps" style="--progress:0">
+            <li class="step">
+              <p class="step__k">Connect</p>
+              <h3>Connected in minutes.</h3>
+              <p>Access is read-only by default and connects in minutes. Choose agentless, a lightweight agent that only connects outbound, or both.</p>
+            </li>
+            <li class="step">
+              <p class="step__k">Fix</p>
+              <h3>Fixes arrive as pull requests.</h3>
+              <p>By default, every fix lands as a pull request in your own repositories, and your pipeline applies it.</p>
+            </li>
+            <li class="step">
+              <p class="step__k">Opt in</p>
+              <h3>One-click fixes, when you grant them.</h3>
+              <p>Direct fixes are opt-in, through a separate role that you grant and can revoke.</p>
+            </li>
+          </ol>
+          <div class="fits">
+            <h3 class="fits__k">Fits how you work</h3>
+            <p>Single sign-on with your own identity provider over OIDC or SAML, with SCIM provisioning. Owner, admin, analyst and viewer roles. A full REST API, export to your SIEM in the open OCSF format, Jira, Slack and webhooks, and an audit log of every action. For partners, a multi-customer console for MSSPs and resellers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who it's for -->
+    <section class="audiences" aria-labelledby="aud-title">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="label">Who it’s for</p>
+          <h2 id="aud-title">For the people responsible for your cloud.</h2>
+        </header>
+        <div class="notes">
+          <article class="note">
+            <h3>Security and platform teams</h3>
+            <p>One ranked list across every cloud.</p>
+          </article>
+          <article class="note">
+            <h3>Compliance owners and auditors</h3>
+            <p>NIS2-ready evidence, control by control.</p>
+          </article>
+          <article class="note">
+            <h3>Partners and MSSPs</h3>
+            <p>One console for all your customers, with partner licences on request.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing hints -->
+    <section class="pricing" id="pricing" aria-labelledby="pricing-title">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="label">Pricing</p>
+          <h2 id="pricing-title">Free during the private beta.</h2>
+        </header>
+        <ul class="hints">
+          <li><p class="hints__k">Seats</p><h3>Unlimited users</h3><p>Bring the whole team, and your auditors.</p></li>
+          <li><p class="hints__k">Scale</p><h3>Grows with your cloud</h3><p>Plans scale with your cloud footprint.</p></li>
+          <li><p class="hints__k">Licences</p><h3>Self-hosted, enterprise, MSSP</h3><p>Available on request.</p></li>
+        </ul>
+        <a class="link-arrow" href="#queue" data-queue>Join the beta queue <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <!-- glasslatch's own credentials -->
+    <section class="creds" id="standards" aria-labelledby="creds-title">
+      <div class="wrap split">
+        <header class="section-head split__head">
+          <p class="label">Our own standards</p>
+          <h2 id="creds-title">What we hold ourselves to.</h2>
+        </header>
+        <ul class="creds__list">
+          <li><p class="creds__k">GDPR</p><p>GDPR compliant. For the hosted service, glasslatch acts as your processor under a data processing agreement.</p></li>
+          <li><p class="creds__k">Security</p><p>Aligned with NIST CSF 2.0, OWASP ASVS and OWASP SAMM.</p></li>
+          <li><p class="creds__k">Disclosure</p><p>Vulnerability disclosure aligned with ISO/IEC 29147 and 30111.</p></li>
+          <li><p class="creds__k">Accessibility</p><p>This site meets WCAG 2.2 AA.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Data-handling questions -->
+    <section class="faq" id="questions" aria-labelledby="faq-title">
+      <div class="wrap split">
+        <header class="section-head split__head">
+          <p class="label">Questions</p>
+          <h2 id="faq-title">Where your data goes, and where it doesn’t.</h2>
+        </header>
+        <div class="qa">
+          <article>
+            <h3>What does glasslatch access?</h3>
+            <p>Read-only access to your cloud, plus an optional agent that only connects outbound. Kubernetes secret values never leave the cluster.</p>
+          </article>
+          <article>
+            <h3>Where does my data live?</h3>
+            <p>In the EU, on the hosted service. Or wherever you run it, if you self-host.</p>
+          </article>
+          <article>
+            <h3>Do you use AI on my data?</h3>
+            <p>No. Connect your own assistant if you want one.</p>
+          </article>
+          <article>
+            <h3>Will it change my cloud?</h3>
+            <p>Only if you opt in. By default, fixes arrive as pull requests.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- The beta queue (photographic closing shot) -->
+    <section class="access" id="queue" data-shot="access" aria-labelledby="access-title">
+      <div class="wrap access__inner">
+        <div class="access__panel">
+          <p class="label">Private beta</p>
+          <h2 id="access-title">Let’s look at<br> your cloud.</h2>
+          <p class="access__line">glasslatch is in private beta.</p>
+          <div class="queue">
+            <form class="queue__form" id="queue-form" action="https://formspree.io/f/maeqkbpo" method="POST">
+              <input type="hidden" name="_subject" value="Private beta queue — glasslatch">
+              <input type="text" name="_gotcha" hidden tabindex="-1" autocomplete="off">
+              <div class="field">
+                <label for="queue-name">Name</label>
+                <input id="queue-name" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="queue-company">Company</label>
+                <input id="queue-company" name="company" type="text" autocomplete="organization" required>
+              </div>
+              <div class="field field--full">
+                <label for="queue-email">Email</label>
+                <input id="queue-email" name="email" type="email" autocomplete="email" spellcheck="false" required>
+              </div>
+              <button class="btn btn--light btn--large queue__submit" type="submit">Join the beta queue <span class="btn__arrow" aria-hidden="true">→</span></button>
+            </form>
+            <p class="queue__status" id="queue-status" role="status" aria-live="polite" tabindex="-1"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__grid">
+      <div class="footer__brand">
+        <a class="brand brand--lg" href="#top" aria-label="glasslatch, back to top">
+          <img class="brand__mark" src="assets/mark-36.webp" srcset="assets/mark-36.webp 1x, assets/mark-72.webp 2x, assets/mark-108.webp 3x" width="36" height="36" alt="" aria-hidden="true" decoding="async">
+          <span class="brand__word">glasslatch</span>
+        </a>
+        <p>EU-sovereign cloud security.<br>glasslatch, a Swedish company, built and run in the EU.</p>
+        <p class="footer__mail"><a href="mailto:hello@glasslatch.com">hello@glasslatch.com</a><br>Also for security reports and accessibility problems.</p>
+      </div>
+      <nav class="footer__col" aria-label="Product">
+        <p class="footer__k">Product</p>
+        <a href="#reach">Attack paths</a>
+        <a href="#coverage">Coverage</a>
+        <a href="#control">Control</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
+      <nav class="footer__col" aria-label="Trust">
+        <p class="footer__k">Trust</p>
+        <a href="#sovereignty">Sovereignty</a>
+        <a href="#standards">Standards</a>
+        <a href="#questions">Questions</a>
+      </nav>
+    </div>
+    <div class="wrap footer__base">
+      <p>glasslatch <span aria-hidden="true">·</span> Private beta</p>
+      <p class="mono">Sweden <span aria-hidden="true">·</span> EU</p>
+    </div>
+  </footer>
+
+  <script src="assets/page.js" defer></script>
+  <script src="assets/gl.js" defer></script>
+</body>
+</html>
