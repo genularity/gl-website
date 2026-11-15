@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>glasslatch — Secure your cloud. Keep every byte in Europe.</title>
 <meta name="description" content="Glass Latch finds the cloud risks attackers can actually use and fixes the ones that matter, with audit evidence for ISO 27001, SOC 2 and NIS2. Built in the EU. Private beta.">
-<meta name="theme-color" content="#f5f8f9">
+<meta name="theme-color" content="#e9edf0">
 <meta property="og:title" content="glasslatch — Secure your cloud. Keep every byte in Europe.">
 <meta property="og:description" content="Agentic cloud security, built in the EU. Glass Latch finds the cloud risks attackers can actually use and fixes the ones that matter. Private beta.">
 <meta property="og:type" content="website">
@@ -19,10 +19,10 @@
 @font-face{font-family:"IBM Plex Mono";src:url("fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2");font-weight:500;font-display:swap}
 
 /* Layout: the live 3D latch runs on a fixed full-screen stage.
-   Two transparent dark "windows" reveal it (the three steps and the closing sign-up);
+   Three transparent dark "windows" reveal it (the three steps, the Why Glass Latch dial and the closing sign-up);
    every other section is light and opaque and slides over the stage. */
 :root{
-  --bg:#f5f8f9; --paper:#ffffff; --ink:#0b1116; --text:#1b242c; --muted:#5b6872; --faint:#8a959e;
+  --bg:#e9edf0; --paper:#ffffff; --ink:#0b1116; --text:#1b242c; --muted:#5b6872; --faint:#8a959e;
   --line:#e2e8ec; --line-2:#d3dbe0;
   --teal:#0f6d7a; --teal-soft:#e3f4f6; --ice:#c4f0f7; --ice-2:#7dd6e5;
   --d-text:#e9eef3; --d-muted:#a9b4bd; --d-line:rgba(214,228,240,.14);
@@ -30,7 +30,7 @@
   --display:"Familjen Grotesk","Inter Tight",system-ui,-apple-system,"Segoe UI",sans-serif;
   --sans:"Inter Tight",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
-  --max:1200px; --ease:cubic-bezier(.2,.7,.1,1);
+  --max:1200px; --night:#080c10; --ease:cubic-bezier(.2,.7,.1,1);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -65,7 +65,7 @@ html:not(.js) .stage__poster,.no-webgl .stage__poster{display:block}
 .btn--ice{background:var(--ice);color:#04161a}
 .btn--ice:hover{background:#fff}
 .btn--sm{height:38px;padding:0 16px;font-size:14px}
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(245,248,249,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(233,237,240,.97);border-bottom:1px solid var(--line)}
 .nav__in{display:flex;align-items:center;gap:32px;height:66px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:600 19px var(--display);color:var(--ink)}
 .brand img{width:28px;height:28px}
@@ -74,7 +74,7 @@ html:not(.js) .stage__poster,.no-webgl .stage__poster{display:block}
 .nav__links a:hover{color:var(--ink)}
 @media (max-width:860px){.nav__links{display:none}.nav__in{justify-content:space-between}}
 
-.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;border:1px solid var(--d-line);background:rgba(5,6,8,.35);backdrop-filter:blur(8px);font-size:13.5px;color:var(--d-muted)}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;border:1px solid var(--d-line);background:rgba(5,6,8,.35);font-size:13.5px;color:var(--d-muted)}
 .badge b{font-weight:500;color:var(--ice)}
 .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
 
@@ -89,10 +89,13 @@ html:not(.js) .stage__poster,.no-webgl .stage__poster{display:block}
 
 section.band{padding-block:clamp(72px,10vw,120px)}
 
-/* closing window: headline and beta sign-up over the live latch */
-.seal{min-height:100svh;display:flex;align-items:flex-end;padding-block:120px 72px}
+/* closing window: the same 3D view as the dial, with the headline and beta sign-up on the right */
+.seal{min-height:100svh;display:flex;align-items:center;padding-block:120px 96px}
+.seal::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,6,8,0) 38%,rgba(5,6,8,.72) 62%,rgba(5,6,8,.82) 100%)}
+.seal .wrap{position:relative;z-index:1}
+.seal__col{margin-left:auto;width:min(34rem,50%)}
+@media (max-width:800px){.seal{align-items:flex-end}.seal::before{background:linear-gradient(180deg,rgba(5,6,8,0) 30%,rgba(5,6,8,.85) 55%)}.seal__col{width:100%}}
 .seal .wrap{width:100%}
-.seal .mono{color:var(--ice-2)}
 .seal h2{max-width:16ch;margin:0 0 40px}
 
 .comp{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:center}
@@ -107,15 +110,17 @@ td:last-child{text-align:right}
 td small{display:block;font:500 12px var(--mono);color:var(--faint)}
 .round-b{border-radius:0 0 28px 28px}
 
-footer{position:relative;z-index:1;background:var(--bg);padding-block:48px 64px;color:var(--faint);font-size:14px}
-.foot{display:flex;flex-wrap:wrap;gap:20px 40px;justify-content:space-between;align-items:center}
-.foot nav{display:flex;flex-wrap:wrap;gap:16px 26px}
-.foot a{text-decoration:none;color:var(--muted)}
-.foot__brand{display:grid;gap:6px}
-.foot .brand{color:var(--ink)}
-.foot__brand span{font-size:13.5px;color:var(--faint);padding-left:38px}
-.foot .foot__mail{padding-left:38px;font-size:14px;color:var(--ink);font-weight:500}
-.foot .foot__mail:hover{color:var(--teal)}
+footer{position:relative;z-index:1;background:#050608;border-top:1px solid rgba(214,228,240,.07);padding-block:12px 14px;color:#56626c;font-size:12px;line-height:1.4}
+.foot{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-between;align-items:center}
+.foot nav{display:flex;flex-wrap:wrap;gap:6px 18px}
+.foot a{text-decoration:none;color:#76828c}
+.foot a:hover{color:var(--ice)}
+.foot__brand{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px}
+.foot .brand{color:#aeb9c1;font-size:13px;gap:7px}
+.foot .brand img{width:16px;height:16px;opacity:.8}
+.foot__brand span{font-size:12px;color:#56626c}
+.foot .foot__mail{font-size:12px;color:#9aa6af}
+.foot .foot__mail:hover{color:var(--ice)}
 
 /* animation keyframes */
 
@@ -132,7 +137,7 @@ footer{position:relative;z-index:1;background:var(--bg);padding-block:48px 64px;
 .hero-w .lead{margin:0 auto;font-size:clamp(18px,1.7vw,21px);max-width:46ch}
 .hero-w .lead b{font-weight:600;color:var(--ink)}
 .hero-w .cta{justify-content:center}
-.seal h2{font-size:clamp(38px,5.6vw,72px);line-height:.98;max-width:14ch}
+.seal h2{font-size:clamp(34px,4.2vw,58px);line-height:.98;max-width:14ch}
 .seal h2 span{color:var(--ice);display:block;font-size:.5em;line-height:1.15;letter-spacing:-.015em;margin-top:.5em;max-width:none}
 
 /* security graph panel: map, trace, meet, close */
@@ -249,8 +254,8 @@ footer{position:relative;z-index:1;background:var(--bg);padding-block:48px 64px;
 .tri.window-dark .tri__tab[aria-selected="true"] b{color:var(--ice-2)}
 .tri.window-dark .tri__tab i{background:rgba(214,228,240,.16)}
 .tri.window-dark .tri__tab i::after{background:var(--ice)}
-.tri.window-dark .tri__view{background:rgba(8,12,16,.68);border-color:var(--d-line);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
-.tri.window-dark .tri__list{padding:6px 20px 8px;border-radius:16px;border:1px solid var(--d-line);background:rgba(8,12,16,.6);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.tri.window-dark .tri__view{background:rgba(8,12,16,.86);border-color:var(--d-line)}
+.tri.window-dark .tri__list{padding:6px 20px 8px;border-radius:16px;border:1px solid var(--d-line);background:rgba(8,12,16,.84)}
 .tri.window-dark th{color:#6c7a85;padding-top:12px}
 .tri.window-dark td{border-top-color:var(--d-line);color:var(--d-text)}
 .tri.window-dark .tri__list td b{color:#fff}
@@ -258,7 +263,7 @@ footer{position:relative;z-index:1;background:var(--bg);padding-block:48px 64px;
 .tri.window-dark .pill--red{background:rgba(224,86,77,.16);color:#f08a82}
 .tri.window-dark .pill--green{background:rgba(63,191,122,.15);color:#8fd3a8}
 .tri.window-dark .pill--teal{background:rgba(125,214,229,.14);color:var(--ice)}
-.price{margin-top:36px;max-width:560px;padding:clamp(24px,3vw,36px);border-radius:22px;border:1px solid var(--d-line);background:rgba(8,12,16,.62);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);display:grid;gap:24px;justify-items:start}
+.price{margin-top:36px;max-width:560px;padding:clamp(24px,3vw,36px);border-radius:22px;border:1px solid var(--d-line);background:rgba(8,12,16,.84);display:grid;gap:24px;justify-items:start}
 .price h3{font-size:clamp(22px,2.2vw,28px)}
 .trust{margin-top:18px;font-size:15px;color:var(--ink);font-weight:500}
 .comp__pts{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:12px;font-size:15.5px;color:var(--muted)}
@@ -299,6 +304,37 @@ footer{position:relative;z-index:1;background:var(--bg);padding-block:48px 64px;
 @media (prefers-reduced-motion:reduce){.qf__status.is-done{animation:none}}
 .price.is-done h3{font-size:clamp(30px,3.4vw,42px);line-height:1.05;letter-spacing:-.025em}
 .price.is-done .price__sub{font-size:17px;margin-bottom:10px}
+.offscreen *,.offscreen *::before,.offscreen *::after{animation-play-state:paused!important}
+
+/* the latch dial: a window onto the live 3D latch at the left edge; the messages turn on a curve around it */
+.dial{position:relative;z-index:1;height:calc(var(--n) * 34vh + 100vh);color:var(--d-text)}
+.dial__pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.dial__pin::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,6,8,0) 38%,rgba(5,6,8,.72) 62%,rgba(5,6,8,.82) 100%)}
+.dial__eyebrow,.msg,.dial__rail{z-index:2}
+@media (max-width:800px){.dial__pin::after{background:linear-gradient(180deg,rgba(5,6,8,0) 38%,rgba(5,6,8,.8) 56%)}}
+.dial .dial__eyebrow{position:absolute;z-index:2;top:calc(env(safe-area-inset-top,0px) + 96px);left:max(28px,env(safe-area-inset-left,0px));margin:0;font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:rgba(214,228,240,.28)}
+/* each message is rotated about the latch's centre, level when it reaches the middle of the screen */
+.msg{position:absolute;left:3vw;top:50%;width:0;height:0}
+.msg__item{position:absolute;left:0;top:0;width:min(30rem,48vw);display:grid;gap:10px;transform-origin:0 0;will-change:transform,opacity}
+.msg__k{font:500 12px var(--mono);letter-spacing:.1em;color:#7f8d98}
+.msg__item{text-shadow:0 2px 16px rgba(0,0,0,.7)}
+.msg__item h3{font:600 clamp(26px,3vw,42px)/1.05 var(--display);letter-spacing:-.025em;margin:0;color:#fff;text-wrap:balance}
+.msg__item p{margin:0;color:var(--d-muted);font-size:clamp(15px,1.3vw,18px);max-width:46ch}
+.dial__rail{position:absolute;right:max(22px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);display:grid;gap:12px}
+.dial__rail i{display:block;width:12px;height:2px;background:#3c4852;transition:width .3s,background .3s}
+.dial__rail i.on{width:22px;background:var(--ice)}
+@media (max-width:800px){
+  .dial__eyebrow{top:auto;bottom:calc(54% - 8px);right:auto;left:24px}
+  .msg{position:absolute;left:24px;right:24px;top:52%;width:auto;height:auto}
+  .msg__item{width:100%;transform:none!important;opacity:0!important;transition:opacity .4s}
+  .msg__item.on{opacity:1!important}
+  .dial__rail{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .dial{height:auto}.dial__pin{position:relative;height:auto;display:block;padding:56px 28px}
+  .dial__rail{display:none}
+  .dial__eyebrow{position:static}.msg{position:static;width:auto;height:auto}.msg__item{position:static;width:auto;opacity:1!important;transform:none!important;margin-top:28px}
+}
 </style>
 <script>
 document.documentElement.classList.add('js');
@@ -435,7 +471,8 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.docu
     if(i===0){const m=sec.querySelectorAll('.env-r .meter i');m.forEach(x=>x.style.width='0');setTimeout(()=>m.forEach(x=>x.style.width=x.dataset.w+'%'),40)}
     else draw[i+1]();
   }
-  function auto(){clearInterval(timer);timer=setInterval(()=>show((cur+1)%3),DUR)}
+  let vis=false;function auto(){clearInterval(timer);timer=setInterval(()=>{if(vis)show((cur+1)%3)},DUR)}
+  new IntersectionObserver(e=>{vis=e[0].isIntersecting;sec.classList.toggle('offscreen',!vis)}).observe(sec);
   tabs.forEach((t,i)=>t.addEventListener('click',()=>{show(i);clearInterval(timer);sec.classList.add('paused')}));
   show(0);
   if(!matchMedia('(prefers-reduced-motion: reduce)').matches)auto();else sec.classList.add('paused');
@@ -535,13 +572,56 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.docu
     let p=1,auto=true;
     function go(k){p=k;ex.dataset.p=k;steps.forEach(b=>b.setAttribute('aria-current',b.dataset.s==k));n.textContent=stat[k][0];l.textContent=stat[k][1]}
     steps.forEach(b=>b.addEventListener('click',()=>{auto=false;go(+b.dataset.s)}));
-    if(matchMedia('(prefers-reduced-motion: reduce)').matches){go(4)}else{go(1);setInterval(()=>{if(auto)go(p%4+1)},3000)}
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){go(4)}else{go(1);let vis=false;new IntersectionObserver(e=>{vis=e[0].isIntersecting;ex.classList.toggle('offscreen',!vis)}).observe(ex);setInterval(()=>{if(auto&&vis)go(p%4+1)},3000)}
   })();
   </script>
   <p class="ex-note">Illustrative example.</p>
 </div></section>
 
-<section class="seal window-dark" id="terms" data-shot="seal" aria-labelledby="terms-title"><div class="wrap">
+<section class="dial window-dark" id="dial" data-shot="access" aria-labelledby="dial-title">
+  <div class="dial__pin">
+    <h2 class="dial__eyebrow" id="dial-title">Why Glass Latch</h2>
+    <div class="msg">
+        <div class="msg__item"><span class="msg__k">01 / 06 · WHY NOW</span><h3>Cloud risk is now a leadership duty.</h3><p>Under NIS2, cloud risk is a management duty. It starts with an attacker’s view.</p></div>
+        <div class="msg__item"><span class="msg__k">02 / 06 · SOVEREIGNTY</span><h3>The map belongs in Europe.</h3><p>Your weakness map is your most sensitive file. It never leaves the EU.</p></div>
+        <div class="msg__item"><span class="msg__k">03 / 06 · COVERAGE</span><h3>Every risk, one platform.</h3><p>Misconfigurations, vulnerabilities, runtime threats and compliance gaps.</p></div>
+        <div class="msg__item"><span class="msg__k">04 / 06 · DEPLOYMENT</span><h3>Run it your way.</h3><p>Hosted in the EU on OVHcloud, self-hosted, or fully air-gapped.</p></div>
+        <div class="msg__item"><span class="msg__k">05 / 06 · AI</span><h3>Bring your own AI.</h3><p>Connect your own assistant through MCP. No AI vendor of ours sees your data.</p></div>
+        <div class="msg__item"><span class="msg__k">06 / 06 · INTEGRATIONS</span><h3>Fits how you work.</h3><p>User roles, a REST API and OCSF export for your SIEM.</p></div>
+    </div>
+    <div class="dial__rail" id="dial-rail" aria-hidden="true"></div>
+  </div>
+  <script>
+  (()=>{
+    // the live 3D latch sits still at the left edge; the messages turn on a curve around it as you scroll
+    const dial=document.getElementById('dial'),items=[...dial.querySelectorAll('.msg__item')],N=items.length,STEP=24;
+    const rail=document.getElementById('dial-rail'),pin=dial.querySelector('.dial__pin'),mobile=matchMedia('(max-width:800px)');
+    dial.style.setProperty('--n',N);
+    items.forEach(()=>rail.appendChild(document.createElement('i')));
+    const marks=[...rail.children];let cur=-1,queued=false,R=0;
+    function size(){R=Math.min(innerWidth*0.46,innerHeight*0.78);frame()}
+    function frame(){
+      queued=false;
+      const rect=dial.getBoundingClientRect();
+      if(rect.bottom<0||rect.top>innerHeight)return;
+      const p=Math.min(1,Math.max(0,-rect.top/Math.max(1,rect.height-innerHeight))),t=p*(N-1);
+      pin.style.opacity=p>0.86?Math.max(0,1-(p-0.86)/0.14).toFixed(3):'';
+      if(!mobile.matches)items.forEach((el,j)=>{
+        const th=(j-t)*STEP,d=Math.abs(th);
+        el.style.transform=`rotate(${th}deg) translate(${R}px,-50%)`;
+        el.style.opacity=d<1?1:Math.max(0,1-d/52)*0.8;
+        el.style.visibility=d>=58?'hidden':'visible';
+      });
+      const i=Math.min(N-1,Math.round(t));
+      if(i!==cur){cur=i;items.forEach((el,j)=>el.classList.toggle('on',j===i));marks.forEach((m,j)=>m.classList.toggle('on',j===i))}
+    }
+    addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(frame)}},{passive:true});
+    addEventListener('resize',size);size();
+  })();
+  </script>
+</section>
+
+<section class="seal window-dark" id="terms" data-shot="access" aria-labelledby="terms-title"><div class="wrap"><div class="seal__col">
   <h2 id="terms-title">Every cloud has a hidden way in. <span>Close it before it’s used against you!</span></h2>
   <div class="price" id="beta">
     <h3>Join the private beta.</h3>
@@ -580,7 +660,7 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.docu
     });
   })();
   </script>
-</div></section>
+</div></div></section>
 
 </main>
 
